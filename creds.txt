@@ -1,0 +1,2 @@
+API_KEY: <Your API KEY(without the brackets)>
+Secret: <Your Secret Key(without the brackets)>
