@@ -63,7 +63,7 @@ pip install stable-baselines3 gymnasium yfinance pandas_ta alpaca-py dash plotly
 ```
 
 ### Alpaca Credentials
-Create a `V1/creds.txt` file with your [Alpaca paper trading](https://app.alpaca.markets/paper/dashboard/overview) keys:
+Create a `creds.txt` file with your [Alpaca paper trading](https://app.alpaca.markets/paper/dashboard/overview) keys:
 ```
 API_KEY: your_api_key_here
 Secret: your_secret_key_here
