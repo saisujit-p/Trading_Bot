@@ -79,14 +79,12 @@ export ALPACA_SECRET_KEY=your_secret_key_here
 
 ### Train a model
 ```bash
-cd V1
 python training.py
 ```
 Trains a PPO agent on 80% of historical data (default: AAPL, 10y, 1d bars) and evaluates on the held-out 20%. Saves the model as `TimCook`.
 
 ### Deploy live (paper trading)
 ```bash
-cd V1
 python deployment.py
 ```
 Opens a dashboard at [http://127.0.0.1:8050](http://127.0.0.1:8050). The bot waits for the market to open, then trades AAPL on 1-hour bars until close. Resumes automatically the next trading day.
