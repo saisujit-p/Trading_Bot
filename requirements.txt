@@ -1,0 +1,13 @@
+numpy
+pandas
+pandas_ta
+gymnasium
+stable-baselines3
+torch
+hmmlearn
+yfinance
+alpaca-py
+dash
+plotly
+matplotlib
+tqdm

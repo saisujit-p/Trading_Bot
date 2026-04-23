@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Trained artifacts — regenerate via training scripts
+*.zip
+hmm_models/
+bull/logs/
+bear/logs/
+sideways/logs/
+**/evaluations.npz
+
+# Data caches
+data_cache/
+*.parquet
+
+# Secrets — never commit
+creds.txt
+.env
+*.key
+*.pem
+
+# Deployment artifacts
+trade_log*.csv
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
