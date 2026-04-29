@@ -8,13 +8,15 @@ OOS data, detects regime per bar via the per-symbol HMM, and dispatches
 each step to the matching specialist.
 """
 import os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import pandas as pd
 from stable_baselines3 import SAC
 
-from Trading_Bot.SAC.env import MarketContinuous, HMM_MODELS_DIR
-from Trading_Bot.SAC.genObs import generate_observations
-from Trading_Bot.SAC._shared import (
+from env import MarketContinuous, HMM_MODELS_DIR
+from genObs import generate_observations
+sys.stderr = sys.__stderr__
+from _shared import (
     SYMBOLS, PERIOD, INTERVAL, CASH, TRAIN_FRAC, REGIME_METHOD,
     regime_model_dir,
 )
@@ -63,14 +65,14 @@ def _trend_slope_series(prices, window):
         slope[i] = ((t - t_mean) * (y - y_mean)).sum() / max(denom, 1e-12)
     return slope
 
-from Trading_Bot.SAC.hmm_regime import HMMRegimeDetector
+from hmm_regime import HMMRegimeDetector
 
 
 def _label_for(symbol, prices):
     if REGIME_METHOD == "hmm":
         det = HMMRegimeDetector.load(os.path.join(HMM_MODELS_DIR, f"{symbol}.pkl"))
         return det.predict(prices)
-    from Trading_Bot.SAC.regime_detector import detect_regime
+    from regime_detector import detect_regime
     return detect_regime(prices)
 
 
@@ -230,7 +232,7 @@ def print_portfolio_summary(symbols_done, agent_rets, bh_rets, usage):
               f"[{','.join(syms)}]")
 
     _line("Bear-mode (B&H<0)", bear_mask)
-    _line("Bull-mode (B&H≥0)", bull_mask)
+    _line("Bull-mode (B&H>=0)", bull_mask)
 
     print(f"  Dispatched: bull={usage.get('bull',0)}, bear={usage.get('bear',0)}, "
           f"sideways={usage.get('sideways',0)}")
